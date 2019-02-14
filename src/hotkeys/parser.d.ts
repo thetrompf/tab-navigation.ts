@@ -1,4 +1,4 @@
-interface HotKey {
+export interface Hotkey {
     alt?: boolean;
     cmd?: boolean;
     ctrl?: boolean;

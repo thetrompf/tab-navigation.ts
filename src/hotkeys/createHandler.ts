@@ -1,10 +1,10 @@
-import { parse, HotKey } from './parser';
+import { parse, Hotkey } from './parser';
 
 export interface HotKeysObject {
     [hotkey: string]: () => void;
 }
 
-export interface HotKeyWithHandler extends HotKey {
+export interface HotKeyWithHandler extends Hotkey {
     handler: () => void;
 }
 
@@ -18,7 +18,7 @@ export interface HotKeyEvent {
 
 export type HotKeyHandler = (e: HotKeyEvent & { preventDefault: () => void; stopPropagation: () => void }) => void;
 
-export function isModifierMatching(hotkey: HotKey, event: HotKeyEvent): boolean {
+export function isModifierMatching(hotkey: Hotkey, event: HotKeyEvent): boolean {
     if (hotkey.strict) {
         return (
             Boolean(hotkey.alt) === event.altKey &&
@@ -36,7 +36,7 @@ export function isModifierMatching(hotkey: HotKey, event: HotKeyEvent): boolean 
     }
 }
 
-export function isKeyMatching(hotkey: HotKey, event: HotKeyEvent): boolean {
+export function isKeyMatching(hotkey: Hotkey, event: HotKeyEvent): boolean {
     if (hotkey.strict) {
         return (hotkey.key == null && event.key.length !== 1) || hotkey.key === event.key;
     } else {
@@ -44,7 +44,7 @@ export function isKeyMatching(hotkey: HotKey, event: HotKeyEvent): boolean {
     }
 }
 
-export function isHotkeyMatching(hotkey: HotKey, event: HotKeyEvent): boolean {
+export function isHotkeyMatching(hotkey: Hotkey, event: HotKeyEvent): boolean {
     return isModifierMatching(hotkey, event) && isKeyMatching(hotkey, event);
 }
 

@@ -127,6 +127,7 @@ export class TabRegistry<E = any> {
     public static empty<EStatic = any>(options?: TabRegistryOptions) {
         return new TabRegistry<EStatic>(options);
     }
+
     /**
      * Construct registry from nested map structure.
      */
@@ -312,6 +313,7 @@ export class TabRegistry<E = any> {
         this.cycle = true;
         return this;
     }
+
     /**
      * Execute focuser for `key`.
      * Returns `true` if the focuser was successful.
